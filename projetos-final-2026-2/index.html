@@ -2,25 +2,108 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Projeto Final - Menus</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background: #f4f4f9; }
-        ul { list-style: none; padding: 0; }
-        li { margin: 15px 0; }
-        a { text-decoration: none; font-size: 18px; color: #0070f3; font-weight: bold; }
-        a:hover { text-decoration: underline; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        li a {
+            display: block;
+            background: #ffffff;
+            padding: 18px 25px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: #1e3c72;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border-left: 5px solid #4facfe;
+        }
+
+        li a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            background: #1e3c72;
+            color: #ffffff;
+            border-left-color: #00f2fe;
+        }
+
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #666;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
-    <h1>Meus Projetos Finais</h1>
-    <p>Selecione um dos projetos abaixo:</p>
-    <ul>
-        <li><a href="./01-odontologia/index.html">01 - Odontologia</a></li>
-        <li><a href="./02-escolinha-esportes/index.html">02 - Escolinha de Esportes</a></li>
-        <li><a href="./03-manutencao-eletronicos/index.html">03 - Manutenção de Eletrônicos</a></li>
-        <li><a href="./04-hotel-caes-gatos/index.html">04 - Hotel para Cães e Gatos</a></li>
-        <li><a href="./05-livraria/index.html">05 - Livraria</a></li>
-        <li><a href="./Extra/index.html">Extra</a></li>
-    </ul>
+
+    <div class="container">
+        <header>
+            <h1>Meus Projetos Finais</h1>
+            <p>Selecione um dos projetos abaixo:</p>
+        </header>
+
+        <main>
+            <ul>
+                <li><a href="./01-odontologia/index.html">01 - Odontologia</a></li>
+                <li><a href="./02-escolinha-esportes/index.html">02 - Escolinha de Esportes</a></li>
+                <li><a href="./03-manutencao-eletronicos/index.html">03 - Manutenção de Eletrônicos</a></li>
+                <li><a href="./04-hotel-caes-gatos/index.html">04 - Hotel para Cães e Gatos</a></li>
+                <li><a href="./05-livraria/index.html">05 - Livraria</a></li>
+                <li><a href="./Extra/index.html">⭐ Projeto Extra</a></li>
+            </ul>
+        </main>
+
+        <footer>
+            <p>Desenvolvido por Fellipe Barros e Gustavo Rocha  | Prof. Cleiton - Vocação</p>
+        </footer>
+    </div>
+
 </body>
 </html>
