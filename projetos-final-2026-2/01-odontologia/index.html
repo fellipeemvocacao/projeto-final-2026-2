@@ -28,7 +28,6 @@
     </header>
 
     <!-- Seção Hero -->
-    <!-- Seção Hero -->
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
@@ -47,17 +46,17 @@
         <h2>DICAS E CUIDADOS COM SUA SAÚDE BUCAL</h2>
         <div class="tips-grid">
             <div class="tip-card">
-                <img src="img/selante.png" alt="Selantes" style="width:100%; height:150px; object-fit:cover; border-radius:6px;">
+                <img src="img/selante.png" alt="Selantes">
                 <h3>Selantes de Fóssulas e Fissuras</h3>
                 <p>Os selantes são materiais plásticos transparentes, brancos ou matizados que são usados para "pintar" as superfícies rugosas dos dentes posteriores.</p>
             </div>
             <div class="tip-card">
-                <img src="img/leite.png" alt="Leite" style="width:100%; height:150px; object-fit:cover; border-radius:6px;">
+                <img src="img/leite.png" alt="Leite">
                 <h3>Dentes de Leite</h3>
                 <p>Devo me preocupar em caso de atraso na vinda dos primeiros dentes de leite? Não, pois a idade média normal para o nascimento é por volta de 6 meses de idade.</p>
             </div>
             <div class="tip-card">
-                <img src="img/carie.png" alt="Cárie" style="width:100%; height:150px; object-fit:cover; border-radius:6px;">
+                <img src="img/carie.png" alt="Cárie">
                 <h3>Como prevenir cáries?</h3>
                 <p>A cárie é uma doença transmissível e infecciosa. Ela acontece quando há a associação entre placa bacteriana cariogênica, dieta inadequada e higiene bucal deficiente.</p>
             </div>
@@ -119,6 +118,24 @@
         </svg>
     </a>
 
-    <script src="../script/script.js"></script>
+    <!-- Estrutura do Chatbot -->
+    <div class="chatbot-container">
+        <button id="chatbotToggle" class="chatbot-toggle">💬 Atendimento Online</button>
+        <div id="chatbotBox" class="chatbot-box hidden">
+            <div class="chatbot-header">
+                <span>Assistente Sorriso</span>
+                <button id="chatbotClose">&times;</button>
+            </div>
+            <div id="chatbotBody" class="chatbot-body">
+                <div class="bot-msg">Olá! Bem-vindo à Clínica Sorriso Santana. Como posso te ajudar hoje?</div>
+            </div>
+            <div class="chatbot-footer">
+                <input type="text" id="chatbotInput" placeholder="Digite sua dúvida...">
+                <button id="chatbotSend">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script/script.js"></script>
 </body>
 </html>
