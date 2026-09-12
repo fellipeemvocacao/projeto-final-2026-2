@@ -186,12 +186,60 @@ header {
     line-height: 1.5;
 }
 
+.treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 .icons-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     max-width: 1200px;
     margin: 0 auto;
+}
+.treatment-card {
+    background-color: #ffffff; /* Fundo branco para destacar do fundo da página */
+    border: 1px solid #e0e0e0; /* Uma borda bem suave */
+    border-radius: 8px;        /* Deixa os cantos arredondados */
+    padding: 24px;             /* Espaçamento interno para o texto não colar nas bordas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra leve para dar profundidade */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animação suave */
+}
+.treatment-card {
+    overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas do card */
+    padding: 0;       /* Remove o padding padrão para a imagem encostar nas bordas */
+}
+
+/* O conteúdo (título e texto) ganha um padding interno */
+.treatment-card h3, 
+.treatment-card p {
+    padding: 0 20px;
+}
+
+.treatment-card h3 {
+    margin-top: 20px;
+}
+
+.treatment-card p {
+    margin-bottom: 20px;
+}
+
+.treatment-card img {
+    width: 100%;       /* Ocupa toda a largura do card */
+    height: 160px;     /* Altura fixa para todas ficarem iguais */
+    object-fit: cover; /* Evita que a imagem distorça */
+    display: block;
+    margin: 0;
+}
+
+/* Efeito legal ao passar o mouse por cima do card */
+.treatment-card:hover {
+    transform: translateY(-4px); /* Sobe um pouquinho */
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1); /* Aumenta a sombra */
 }
 
 .icon-item {
@@ -420,4 +468,77 @@ footer {
         flex-direction: column;
         gap: 15px;
     }
+}
+/* Container principal da seção para centralizar e alinhar o texto corretamente */
+.treatments-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    text-align: left; /* Garante que o título e subtítulo fiquem alinhados */
+}
+
+.treatments-page h2 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.section-desc {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 40px;
+    max-width: 800px;
+}
+
+/* Grid que organiza os cards lado a lado */
+.treatments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+    justify-content: center;
+}
+
+/* Estilo completo do Card do Dentista */
+.treatment-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    overflow: hidden; /* Mantém a foto arredondada dentro do card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.treatment-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Foto do dentista ocupando o topo perfeitamente */
+.treatment-card img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover; /* Evita que a foto fique esticada ou distorcida */
+    display: block;
+}
+
+/* Espaçamento interno para os textos dentro do card */
+.treatment-card h3,
+.treatment-card p {
+    padding: 0 24px;
+}
+
+.treatment-card h3 {
+    font-size: 1.25rem;
+    color: #222;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.treatment-card p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin-bottom: 15px;
 }
