@@ -4,62 +4,52 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Feedbacks - Escolinha Craques</title>
-  <meta name="description" content="Veja o que alunos e responsáveis dizem sobre os treinos na Escolinha Craques." />
-  <link rel="stylesheet" href="../css/estilo.css" />
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="nav-container">
-      <div class="logo">
-        <h1>⚽ Escolinha de Futebol & Vôlei Craques</h1>
+  <header class="site-header-top">
+    <div class="nav-container-top">
+      <div class="logo-top">
+        <h1>⚽ CRAQUES</h1>
       </div>
-      <nav class="nav-menu" aria-label="Navegação secundária">
+      <nav class="nav-menu-top">
         <ul>
-          <li><a href="../index.html">Início</a></li>
-          <li><a href="nos.html">Quem Somos</a></li>
-          <li><a href="turmas.html">Turmas</a></li>
-          <li><a href="contato.html">Contato</a></li>
+          <li><a href="../index.html">HOME</a></li>
+          <li><a href="nos.html">A ESCOLA</a></li>
+          <li><a href="turmas.html">TURMAS</a></li>
+          <li><a href="feedback.html" class="active">FEEDBACKS</a></li>
+          <li><a href="contato.html">CONTATO</a></li>
         </ul>
       </nav>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="main-internal">
     <section class="card-conteudo-pagina">
-      <h2>Depoimentos de Nossos Craques</h2>
-      <p>A opinião de nossos alunos e responsáveis é fundamental para o nosso aperfeiçoamento contínuo.</p>
+      <h2>Depoimentos</h2>
+      <p>Veja o que os pais e alunos dizem sobre a nossa metodologia.</p>
 
       <div class="grid-feedbacks">
-        <article class="feedback-card">
-          <p class="comentario">"O Lucas desenvolveu muito o espírito de equipe e a coordenação motora desde que começou no futebol. Professores excelentes!"</p>
-          <p class="autor"><strong>— Mariana S., mãe do Lucas (9 anos)</strong></p>
-          <span class="estrelas">⭐⭐⭐⭐⭐</span>
-        </article>
-
-        <article class="feedback-card">
-          <p class="comentario">"Os treinos de vôlei são sensacionais. O ambiente é muito acolhedor e seguro para a prática esportiva."</p>
-          <p class="autor"><strong>— Pedro H. (16 anos)</strong></p>
-          <span class="estrelas">⭐⭐⭐⭐⭐</span>
-        </article>
+        <div class="feedback-card">
+          <p class="comentario">"O Lucas desenvolveu muito o espírito de equipe e a coordenação motora. Professores nota 10!"</p>
+          <p class="autor"><strong>— Mariana S. (Mãe do Lucas)</strong></p>
+          <span>⭐⭐⭐⭐⭐</span>
+        </div>
+        <div class="feedback-card">
+          <p class="comentario">"Os treinos são excelentes e o ambiente é super seguro e motivador."</p>
+          <p class="autor"><strong>— Pedro H. (Aluno Sub-15)</strong></p>
+          <span>⭐⭐⭐⭐⭐</span>
+        </div>
       </div>
 
-      <hr style="margin: 30px 0;">
-
-      <h3>Deixe o seu Feedback</h3>
-      <form class="form-feedback">
-        <div class="campo">
-          <label for="nome-feedback">Seu Nome:</label>
-          <input type="text" id="nome-feedback" required placeholder="Digite seu nome">
-        </div>
-        <div class="campo">
-          <label for="avaliacao">Sua Avaliação:</label>
-          <textarea id="avaliacao" rows="3" required placeholder="Conte-nos sua experiência..."></textarea>
-        </div>
-        <button type="submit" class="btn">Enviar Avaliação</button>
-      </form>
-
-      <div style="margin-top: 30px;">
+      <div class="acao-centro">
         <a href="../index.html" class="btn-voltar">Voltar para a Página Inicial</a>
       </div>
     </section>

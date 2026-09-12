@@ -1,94 +1,185 @@
 <!DOCTYPE html>
-<!-- Escolinha de Futebol & Vôlei Craques — Página Inicial -->
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Escolinha de Futebol & Vôlei Craques</title>
-  <meta name="description" content="Aprenda futebol e vôlei na Escolinha Craques! Confiras nossas turmas, horários, estrutura e faça sua matrícula." />
-  <link rel="stylesheet" href="css/estilo.css">
+  <meta name="description" content="A primeira escola de clubes do Brasil. Conheça nossos pilares, unidades e conquistas." />
+  <link rel="stylesheet" href="./css/estilo.css">
+  <!-- Ícones para redes sociais e WhatsApp -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <!-- Vídeo de fundo com atributo de acessibilidade e controle via script -->
-  <video class="bg-video" id="bgVideo" autoplay muted loop playsinline aria-hidden="true">
-    <source src="video/fundo.mp4" type="video/mp4">
-    Seu navegador não suporta vídeos em HTML5.
-  </video>
-
-  <!-- Cabeçalho principal com navegação -->
-  <header class="site-header">
-    <div class="nav-container">
-      <div class="logo">
-        <h1>⚽ Escolinha de Futebol & Vôlei Craques</h1>
+  <!-- Cabeçalho Principal (Estilo Barra Superior) -->
+  <header class="site-header-top">
+    <div class="nav-container-top">
+      <div class="logo-top">
+        <h1>⚽ CRAQUES</h1>
       </div>
       
-      <!-- Menu de Navegação para Acessibilidade e SEO -->
-      <nav class="nav-menu" aria-label="Navegação principal">
+      <nav class="nav-menu-top" aria-label="Navegação principal">
         <ul>
-          <li><a href="html/nos.html">Quem Somos</a></li>
-          <li><a href="html/turmas.html">Turmas</a></li>
-          <li><a href="html/feedback.html">Feedbacks</a></li>
-          <li><a href="html/contato.html" class="nav-btn-highlight">Matricule-se</a></li>
+          <li><a href="index.html" class="active">HOME</a></li>
+          <li><a href="html/nos.html">A ESCOLA</a></li>
+          <li><a href="html/turmas.html">TURMAS</a></li>
+          <li><a href="html/feedback.html">FEEDBACKS</a></li>
+          <li><a href="html/contato.html">CONTATO</a></li>
         </ul>
       </nav>
+
+      <div class="social-icons">
+        <a href="https://www.youtube.com" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="https://www.facebook.com" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      </div>
     </div>
   </header>
 
   <!-- Conteúdo Principal -->
-  <main id="app">
-    <div class="container-cards">
+  <main id="app" class="main-content">
+    
+    <!-- Seção: A Primeira Escola de Clubes do Brasil & Pilares -->
+    <section class="secao-pilares">
+      <h2 class="titulo-principal">A PRIMEIRA ESCOLA DE CLUBES DO BRASIL</h2>
       
-      <!-- Card: Quem Somos -->
-      <article class="card">
-        <img src="img/capa.jpg" alt="Estrutura e alunos da Escolinha de Futebol e Vôlei Craques">
-        <div class="card-conteudo">
-          <h3>Quem somos nós?</h3>
-          <p>Aprenda mais sobre a nossa estrutura, valores e a nossa paixão pelo esporte.</p>
-          <a href="html/nos.html" class="btn">Conheça nossa história</a>
+      <div class="grid-pilares">
+        <!-- Pilar 1 -->
+        <div class="pilar-card">
+          <div class="pilar-icon"><i class="fa-solid fa-chess-board"></i></div>
+          <h3>PLANEJAMENTO</h3>
+          <p>Foco no aprimoramento físico, tático e técnico. Todos os fundamentos do futebol são contemplados.</p>
         </div>
-      </article>
 
-      <!-- Card: Turmas -->
-      <article class="card">
-        <img src="img/turmas.jpg" alt="Alunos treinando nas turmas de futebol e vôlei">
-        <div class="card-conteudo">
-          <h3>Turmas</h3>
-          <p>Confira todas as modalidades disponíveis por faixa etária e nível de habilidade.</p>
-          <a href="html/turmas.html" class="btn">Turmas Disponíveis</a>
+        <!-- Pilar 2 -->
+        <div class="pilar-card">
+          <div class="pilar-icon"><i class="fa-solid fa-shield-halved"></i></div>
+          <h3>JOGADORES</h3>
+          <p>Treinamento especializado e focado para o desenvolvimento de jogadores de alto nível.</p>
         </div>
-      </article>
 
-      <!-- Card: Feedbacks (Texto corrigido) -->
-      <article class="card">
-        <img src="img/feedback.jpg" alt="Depoimentos e avaliações dos nossos alunos e pais">
-        <div class="card-conteudo">
-          <h3>Feedbacks</h3>
-          <p>Veja o que nossos alunos e pais dizem sobre os treinos e deixe também a sua avaliação.</p>
-          <a href="html/feedback.html" class="btn">Avalie nossa escola</a>
+        <!-- Pilar 3 -->
+        <div class="pilar-card">
+          <div class="pilar-icon"><i class="fa-solid fa-futbol"></i></div>
+          <h3>MODALIDADES</h3>
+          <p>Aulas em campo society, campos/quadras oficiais de futebol e vôlei. </p>
         </div>
-      </article>
 
-      <!-- Card: Contato / Matrícula -->
-      <article class="card">
-        <img src="img/matricula.jpg" alt="Faça sua matrícula na Escolinha Craques">
-        <div class="card-conteudo">
-          <h3>Contato</h3>
-          <p>Faça sua pré-matrícula ou tire suas dúvidas diretamente com a nossa equipe.</p>
-          <a href="html/contato.html" class="btn">Matricule-se</a>
+        <!-- Pilar 4 -->
+        <div class="pilar-card">
+          <div class="pilar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+          <h3>PROFESSORES</h3>
+          <p>Constantemente capacitados/atualizados e credenciados pelo Conselho Regional de Educação Física (CREF).</p>
         </div>
-      </article>
 
-    </div>
+        <!-- Pilar 5 -->
+        <div class="pilar-card">
+          <div class="pilar-icon"><i class="fa-solid fa-stopwatch"></i></div>
+          <h3>AVALIAÇÕES</h3>
+          <p>Nossos alunos são avaliados regularmente com acompanhamento pedagógico e técnico.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Seção: Conquistas / Destaques -->
+    <section class="secao-conquistas">
+      <h2>CONHEÇA ALGUNS DE NOSSAS CONQUISTAS!</h2>
+      
+      <div class="conquista-banner">
+        <div class="conquista-selo">
+          <span>ESCOLA DE FUTEBOL</span>
+          <small>PILOTO, SANTANA E ANÁLIA FRANCO</small>
+        </div>
+        <div class="conquista-foto">
+          <img src="img/futebelas.png" alt="Aluno destaque premiado com medalha">
+        </div>
+        <div class="conquista-legenda">
+          <strong>LIGA FUT 8 ABC - 15 anos</strong>
+          <p>CRISTIANO TONEY - ARTILHEIRO</p>
+          <span>UNIDADE PILOTO</span>
+        </div>
+      </div>
+        <div class="conquista-banner">
+        <div class="conquista-selo">
+          <span>ESCOLA DE VOLÊI</span>
+          <small>PILOTO, SANTANA E ANÁLIA FRANCO</small>
+        </div>
+        <div class="conquista-foto">
+          <img src="img/voleidelas.png" alt="Aluno destaque premiado com medalha">
+        </div>
+        <div class="conquista-legenda">
+          <strong>LIGA VÔLEI 7 ABC - 14 anos</strong>
+          <p>RAFAEL DAIS - ARTILHEIRO</p>
+          <span>UNIDADE SÃO BERNARDO</span>
+        </div>
+    </section>
+
+    <!-- Seção: Nossas Unidades (Estilo Colunas de Fundo) -->
+    <section class="secao-unidades">
+      <h2>NOSSAS UNIDADES</h2>
+      
+      <div class="grid-unidades">
+        <!-- Unidade 1 -->
+        <div class="unidade-coluna" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('img/unidade1.png');">
+          <div class="unidade-info">
+            <h3>UNIDADE PILOTO</h3>
+            <p>Rua Exemplo de Estéfano, 2371</p>
+            <span class="telefone">(11) 98888-1000</span>
+            <div class="unidade-acoes">
+              <a href="html/contato.html" class="btn-saiba">Saiba Mais!</a>
+              <a href="https://wa.me/5511988881000" target="_blank" class="btn-whats" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unidade 2 -->
+        <div class="unidade-coluna" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('img/unidade2.png');">
+          <div class="unidade-info">
+            <h3>UNIDADE SANTANA ACRE</h3>
+            <p>Rua Água Comprida, 257 - Jardim França</p>
+            <span class="telefone">(11) 9 8198-7732</span>
+            <div class="unidade-acoes">
+              <a href="html/contato.html" class="btn-saiba">Saiba Mais!</a>
+              <a href="https://wa.me/5511981987732" target="_blank" class="btn-whats" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unidade 3 -->
+        <div class="unidade-coluna" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('img/unidade3.png');">
+          <div class="unidade-info">
+            <h3>UNIDADE SANTANA RESIDENCIAL</h3>
+            <p>Rua Coronel Joaquim Ferreira de Souza, 311 - Mandaqui</p>
+            <span class="telefone">(11) 9 6081-1311</span>
+            <div class="unidade-acoes">
+              <a href="html/contato.html" class="btn-saiba">Saiba Mais!</a>
+              <a href="https://wa.me/5511960811311" target="_blank" class="btn-whats" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Unidade 4 -->
+        <div class="unidade-coluna" style="background-image: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3)), url('img/unidade4.png');">
+          <div class="unidade-info">
+            <h3>UNIDADE SÃO BERNARDO</h3>
+            <p>R. do Sacramento, 833 - São Bernardo do Campo</p>
+            <span class="telefone">(11) 9 5941-9899</span>
+            <div class="unidade-acoes">
+              <a href="html/contato.html" class="btn-saiba">Saiba Mais!</a>
+              <a href="https://wa.me/5511959419899" target="_blank" class="btn-whats" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
-  <!-- Rodapé Completo -->
+  <!-- Rodapé -->
   <footer class="site-footer">
-    <div class="footer-conteudo">
-      <p>© <span id="ano"></span> Escolinha de Futebol & Vôlei Craques. Todos os direitos reservados.</p>
-    </div>
+    <p>© <span id="ano"></span> Escolinha de Futebol & Vôlei Craques. Todos os direitos reservados.</p>
   </footer>
 
-  <script src="script/script.js"></script>
+  <script src="../script/script.js"></script>
 </body>
 </html>

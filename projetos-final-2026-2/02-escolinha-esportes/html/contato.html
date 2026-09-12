@@ -3,74 +3,60 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contato & Pré-Matrícula - Escolinha Craques</title>
-  <meta name="description" content="Entre em contato com a Escolinha Craques ou faça sua pré-matrícula para turmas de futebol e vôlei." />
-  <link rel="stylesheet" href="../css/estilo.css" />
+  <title>Contato - Escolinha Craques</title>
+  <link rel="stylesheet" href="../css/estilo.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
 
-  <header class="site-header">
-    <div class="nav-container">
-      <div class="logo">
-        <h1>⚽ Escolinha de Futebol & Vôlei Craques</h1>
+  <header class="site-header-top">
+    <div class="nav-container-top">
+      <div class="logo-top">
+        <h1>⚽ CRAQUES</h1>
       </div>
-      <nav class="nav-menu" aria-label="Navegação secundária">
+      <nav class="nav-menu-top">
         <ul>
-          <li><a href="../index.html">Início</a></li>
-          <li><a href="nos.html">Quem Somos</a></li>
-          <li><a href="turmas.html">Turmas</a></li>
-          <li><a href="feedback.html">Feedbacks</a></li>
+          <li><a href="../index.html">HOME</a></li>
+          <li><a href="nos.html">A ESCOLA</a></li>
+          <li><a href="turmas.html">TURMAS</a></li>
+          <li><a href="feedback.html">FEEDBACKS</a></li>
+          <li><a href="contato.html" class="active">CONTATO</a></li>
         </ul>
       </nav>
+      <div class="social-icons">
+        <a href="#"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </div>
     </div>
   </header>
 
-  <main class="container">
+  <main class="main-internal">
     <section class="card-conteudo-pagina">
-      <h2>Fale Conosco & Faça sua Pré-Matrícula</h2>
-      <p>Preencha o formulário abaixo para tirar dúvidas ou agendar uma aula experimental gratuita!</p>
+      <h2>Fale Conosco & Pré-Matrícula</h2>
+      <p>Preencha os dados abaixo para tirar dúvidas ou agendar uma aula experimental.</p>
 
       <form class="form-contato">
         <div class="campo">
           <label for="nome">Nome do Aluno(a):</label>
-          <input type="text" id="nome" name="nome" required placeholder="Digite o nome completo">
+          <input type="text" id="nome" required placeholder="Nome completo">
         </div>
-
         <div class="campo">
-          <label for="responsavel">Nome do Responsável:</label>
-          <input type="text" id="responsavel" name="responsavel" required placeholder="Digite o nome do responsável">
-        </div>
-
-        <div class="campo">
-          <label for="modalidade">Modalidade de Interesse:</label>
-          <select id="modalidade" name="modalidade" required>
+          <label for="modalidade">Modalidade:</label>
+          <select id="modalidade" required>
             <option value="">Selecione...</option>
             <option value="futebol">Futebol</option>
             <option value="volei">Vôlei</option>
-            <option value="ambos">Ambos</option>
           </select>
         </div>
-
         <div class="campo">
-          <label for="whatsapp">WhatsApp / Telefone:</label>
-          <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(11) 9XXXX-XXXX">
+          <label for="whatsapp">WhatsApp:</label>
+          <input type="tel" id="whatsapp" required placeholder="(11) 9XXXX-XXXX">
         </div>
-
-        <div class="campo">
-          <label for="mensagem">Mensagem / Dúvidas:</label>
-          <textarea id="mensagem" name="mensagem" rows="4" placeholder="Escreva sua mensagem aqui..."></textarea>
-        </div>
-
-        <button type="submit" class="btn">Enviar Pré-Matrícula</button>
+        <button type="submit" class="btn">Enviar Mensagem</button>
       </form>
 
-      <div class="contato-info" style="margin-top: 30px;">
-        <p>📱 <strong>WhatsApp:</strong> (11) 96767-7676</p>
-        <p>📸 <strong>Instagram:</strong> @escolinhacraquetotalofc</p>
-        <p>📍 <strong>Endereço:</strong> Av. dos Esportes, 1000 — São Paulo / SP</p>
-      </div>
-
-      <div style="margin-top: 20px;">
+      <div class="acao-centro">
         <a href="../index.html" class="btn-voltar">Voltar para a Página Inicial</a>
       </div>
     </section>
