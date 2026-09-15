@@ -4,22 +4,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchInput = document.getElementById("search-input");
     const app = document.getElementById("app");
 
-    // Salva o estado inicial dos cards
-    const homeContent = app.innerHTML;
+    // Salva o conteúdo inicial da galeria
+    const homeContent = app ? app.innerHTML : "";
 
-    // 1. Alternar Áudio
+    // 1. Alternar Áudio (Corrigido)
     function alternarAudio() {
-        if (!bgAudio) return;
+        const audio = document.getElementById("bg-audio");
+        const btn = document.getElementById("toggle-audio-btn");
+        if (!audio) return;
 
-        if (bgAudio.paused) {
-            bgAudio.play()
+        if (audio.paused) {
+            audio.play()
                 .then(() => {
-                    if (audioBtn) audioBtn.textContent = "🔇 Pausar Música";
+                    if (btn) btn.textContent = "🔇 Pausar Música";
                 })
-                .catch((err) => console.error("Erro de áudio:", err));
+                .catch((err) => console.error("Erro ao reproduzir áudio:", err));
         } else {
-            bgAudio.pause();
-            if (audioBtn) audioBtn.textContent = "🔊 Ouvir Música";
+            audio.pause();
+            if (btn) btn.textContent = "🔊 Ouvir Música";
         }
     }
 
@@ -37,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const description = card.querySelector("p")?.textContent.toLowerCase() || "";
 
                 if (title.includes(term) || description.includes(term)) {
-                    card.style.display = "block";
+                    card.style.display = "flex";
                 } else {
                     card.style.display = "none";
                 }
@@ -45,7 +47,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 3. Animação de Scroll
+    // 3. Animação de entrada dos cards
     function inicializarAnimacoes() {
         const cards = document.querySelectorAll(".card");
         if (!cards.length) return;
@@ -65,7 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // 4. Carregar páginas sem recarregar o navegador
+    // 4. Carregamento de páginas internas via Fetch
     async function carregarPagina(url, pushState = true) {
         try {
             const response = await fetch(url);
@@ -75,17 +77,17 @@ document.addEventListener("DOMContentLoaded", () => {
             const parser = new DOMParser();
             const doc = parser.parseFromString(html, "text/html");
 
-            // Se voltar para a galeria
+            const contInput = document.querySelector(".controles");
+
             if (url.endsWith("index.html") || url.endsWith("/")) {
                 app.innerHTML = homeContent;
-                if (searchInput) searchInput.parentElement.style.display = "flex";
+                if (contInput) contInput.style.display = "flex";
                 inicializarFiltro();
                 inicializarAnimacoes();
             } else {
-                // Se for a página individual de um santo (pega o .container do HTML do santo)
                 const novoConteudo = doc.querySelector(".container") || doc.body;
                 app.innerHTML = novoConteudo.innerHTML;
-                if (searchInput) searchInput.parentElement.style.display = "none";
+                if (contInput) contInput.style.display = "none";
             }
 
             if (pushState) {
@@ -99,7 +101,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Intercepta os cliques nos links para trocar apenas o conteúdo
+    // Evento no botão de áudio
+    if (audioBtn) {
+        audioBtn.addEventListener("click", alternarAudio);
+    }
+
+    // Interceptação de links para navegação SPA
     document.body.addEventListener("click", (e) => {
         const link = e.target.closest("a");
         if (!link) return;
@@ -111,7 +118,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    // Suporte aos botões 'Voltar' e 'Avançar' do navegador
+    // Navegação no histórico (Avançar/Voltar)
     window.addEventListener("popstate", (e) => {
         if (e.state && e.state.url) {
             carregarPagina(e.state.url, false);
@@ -120,7 +127,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 
-    if (audioBtn) audioBtn.addEventListener("click", alternarAudio);
     inicializarFiltro();
     inicializarAnimacoes();
 });

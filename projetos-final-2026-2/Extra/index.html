@@ -4,13 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Santos Católicos</title>
-    <link rel="stylesheet" href="estilo/estilo.css">
+    <link rel="stylesheet" href="estilo/estilo.css"/>
 </head>
 <body>
 
-    <video class="bg-video" autoplay muted loop playsinline>
-        <source src="video/santos.mp4" type="video/mp4">
-    </video>
+    <!-- Vídeo de Fundo -->
+<video class="bg-video" autoplay muted loop playsinline>
+    <source src="video/santos.mp4" type="video/mp4">
+</video>
+
+<!-- Áudio de Fundo -->
+<audio id="bg-audio" src="audio/gregoriano.mp3" loop></audio>
+
+<!-- Camada de Escurecimento (Overlay) -->
+<div class="bg-overlay"></div>
 
     <audio id="bg-audio" src="audio/gregoriano.mp3" loop></audio>
     <div class="bg-overlay"></div>
@@ -119,6 +126,10 @@
             </div>
         </div>
     </main>
+    <footer class="site-footer">
+    <p>© <span id="ano"></span> Projeto santos. Todos os direitos reservados.</p>
+    <p>Desenvolvido por: <a href="#" target="_blank" rel="noopener noreferrer">Fellipe & Gustavo</a></p>
+  </footer>
 
     <script src="script/script.js"></script>
 </body>
