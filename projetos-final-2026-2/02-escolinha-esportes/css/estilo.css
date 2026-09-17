@@ -544,16 +544,30 @@ body {
    Seção de Planos Personalizados
    ========================================================= */
 
+/* =========================================================
+   Seção de Planos Personalizados (Ajustes de Título)
+   ========================================================= */
+
 .secao-planos {
   padding: 60px 20px;
-  background-color: #f8fafc;
+  background-color: #121212; /* Fundo escuro igual ao site */
   text-align: center;
 }
 
+/* OPÇÃO 1: Título em Vermelho (Combinando com as cores da marca) */
+.secao-planos .titulo-principal {
+  color: var(--accent-yellow);
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 10px;
+  letter-spacing: 1px;
+}
+
 .subtitulo-planos {
-  color: #64748b;
+  color: var(--text-gray); /* Cinza claro legível no fundo escuro */
   margin-bottom: 40px;
   font-size: 1.1rem;
+  font-weight: 500;
 }
 
 .planos-container {
