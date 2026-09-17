@@ -3,236 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Editora Santidade</title>
-    <meta name="description" content="Solicitação de orçamento online. Atendimento profissional e de alta precisão para seu aparelho." />
+    <title>Editora Santidade - Livraria Católica</title>
+    <meta name="description" content="Compre livros católicos, devocionários e obras clássicas de teologia com envio para todo o Brasil." />
     <link rel="stylesheet" href="css/styles.css" />
+    <script src="script/script.js" defer></script>
 </head>
 <body>
 
-    <!-- Header -->
     <header>
         <div class="header-container">
-            <!-- Clicar no Logo retorna para a Home -->
-            <a class="logo" onclick="mudarAba('home')">Santidade</a>
-            <div class="search-bar">
-                <input type="text" id="global-search" placeholder="Buscar livro, autor, tema...">
-                <button onclick="realizarBusca()">🔍</button>
-            </div>
+            <button type="button" class="logo-btn" onclick="mudarAba('home')" aria-label="Ir para a página inicial">Santidade</button>
+            
+            <form class="search-bar" onsubmit="realizarBusca(event)">
+                <input type="search" id="global-search" placeholder="Buscar livro, autor, tema..." aria-label="Buscar livros">
+                <button type="submit" aria-label="Pesquisar">🔍</button>
+            </form>
+
             <div class="user-actions">
-                <button class="user-profile-btn" onclick="mudarAba('conta')">👤 <span id="user-name-display">Conta</span></button>
-                <button class="cart-btn" onclick="abrirCarrinho()">🛒 (<span id="cart-count">0</span>)</button>
+                <button type="button" class="user-profile-btn" onclick="mudarAba('conta')">
+                    👤 <span id="user-name-display">Conta</span>
+                </button>
+                <button type="button" class="cart-btn" onclick="abrirCarrinho()" aria-label="Ver carrinho de compras">
+                    🛒 (<span id="cart-count">0</span>)
+                </button>
             </div>
         </div>
-        <div class="sub-nav">
-            <a href="#" onclick="mudarAba('home')">Início</a>
-            <a href="#" onclick="mudarAba('destaques')">Destaques</a>
-            <a href="#" onclick="mudarAba('desejos')">Lista de Desejos</a>
-            <a href="#" onclick="mudarAba('estante')">Estante de Leitura</a>
-            <a href="#" onclick="mudarAba('enderecos')">Meus Endereços</a>
-        </div>
+
     </header>
 
-    <!-- Layout Principal -->
     <div class="main-layout">
-        <!-- Sidebar -->
         <aside class="sidebar">
             <h3>Menu Principal</h3>
-            <ul>
-                <li><button onclick="mudarAba('home')" id="btn-home" class="active">Página Inicial</button></li>
-                <li><button onclick="mudarAba('conta')" id="btn-conta">Minha Conta</button></li>
-                <li><button onclick="mudarAba('estante')" id="btn-estante">Estante de Leitura (Comprados)</button></li>
-                <li><button onclick="mudarAba('desejos')" id="btn-desejos">Lista de Desejos</button></li>
-                <li><button onclick="mudarAba('enderecos')" id="btn-enderecos">Endereços de Entrega</button></li>
-                <li><button onclick="mudarAba('login')" id="btn-login">Dados de Login</button></li>
-            </ul>
+            <nav aria-label="Menu do usuário">
+                <ul>
+                    <li><button type="button" onclick="mudarAba('home')" id="btn-home" class="active">Página Inicial</button></li>
+                    <li><button type="button" onclick="mudarAba('conta')" id="btn-conta">Minha Conta</button></li>
+                    <li><button type="button" onclick="mudarAba('estante')" id="btn-estante">Estante de Leitura</button></li>
+                    <li><button type="button" onclick="mudarAba('desejos')" id="btn-desejos">Lista de Desejos</button></li>
+                    <li><button type="button" onclick="mudarAba('enderecos')" id="btn-enderecos">Endereços de Entrega</button></li>
+                    <li><button type="button" onclick="mudarAba('login')" id="btn-login">Dados de Login</button></li>
+                </ul>
+            </nav>
         </aside>
 
-        <!-- Área Dinâmica -->
         <main class="content-area">
             
-            <!-- Aba: Página Inicial (Baseada na Imagem de Santa Teresinha) -->
-            <div id="tab-home" class="tab-content active">
-                <div class="main-banner">
+            <section id="tab-home" class="tab-content active">
+                <article class="main-banner">
                     <div class="banner-text">
-                        <p style="font-size: 0.9rem; letter-spacing: 2px;">PROMOÇÃO ESPECIAL</p>
-                        <h1>Castelo interior ou Moradas</h1>
+                        <span class="badge-promo">PROMOÇÃO ESPECIAL</span>
+                        <h1>Castelo Interior ou Moradas</h1>
                         <p>Descubra as obras que transformaram a fé em vida pura e dedicação espiritual.</p>
-                        <p style="color: var(--accent-gold); font-weight: bold;">R$ 50,00</p>
-                        <img src="img/moradas.png" alt="moradas" class="logo-img">
-                        <button class="btn" style="background: #121212; color: #f1c40f;" onclick="adicionarCarrinho('Castelo interior ou Moradas')">Aproveitar Promoção</button>
+                        <p class="price-tag">R$ 50,00</p>
+                        <img src="img/moradas.png" alt="Capa do livro Castelo Interior ou Moradas de Santa Teresa de Ávila" class="logo-img">
+                        <button type="button" class="btn btn-banner" onclick="adicionarCarrinho('1')">Aproveitar Promoção</button>
                     </div>
-                </div>
+                </article>
 
                 <h2 class="section-title">Produtos em Destaque</h2>
-                <div class="grid-cards">
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>Devocionário a Santa Teresinha</h4>
-                            <p>Editora Santidade</p>
-                            <img src="img/devocionario.png" alt="devocionario" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 59,90</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('Devocionário a Santa Teresinha')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('Devocionário a Santa Teresinha')">❤️</button>
-                        </div>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>Suma Teológica (Resumo)</h4>
-                            <p>Santo Tomás de Aquino</p>
-                            <img src="img/suma.png" alt="suma" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 89,90</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('Suma Teológica')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('Suma Teológica')">❤️</button>
-                        </div>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>Bíblia</h4>
-                            <p>Pe. Manuel de Matos Soares</p>
-                            <img src="img/biblia.png" alt="biblia" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 95,90</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('Bíblia')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('Bíblia')">❤️</button>
-                        </div>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>O privilégio de ser mulher</h4>
-                            <p>Alice von Hildebrand</p>
-                            <img src="img/vonhildebrand.png" alt="privilegio" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 29,90</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('O privilégio de ser mulher')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('O privilégio de ser mulher')">❤️</button>
-                        </div>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>KIT - Catena Aurea Completa (4 Volumes)</h4>
-                            <p>Santo Tomás de Aquino</p>
-                            <img src="img/catena.png" alt="catena" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 314,90</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('KIT - Catena Aurea Completa 4 Volumes')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('KIT - Catena Aurea Completa 4 Volumes')">❤️</button>
-                        </div>
-                    </div>
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>Triunfo: O poder e a glória da Igreja Católica</h4>
-                            <p>H. W. Crocker III</p>
-                            <img src="img/triunfo.png" alt="triunfo" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 83,00</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('Triunfo: O poder e a glória da Igreja Católica')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('Triunfo: O poder e a glória da Igreja Católica')">❤️</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                <div class="grid-cards" id="home-featured-grid"></div>
+            </section>
 
-            <!-- Aba: Minha Conta -->
-            <div id="tab-conta" class="tab-content">
+            <section id="tab-conta" class="tab-content">
                 <h2 class="section-title">Minha Conta</h2>
-                <div style="background: var(--bg-card); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color);">
-                    <p><strong>Nome:</strong> seu nome</p>
-                    <p><strong>E-mail:</strong> seunome@gmail.com</p>
+                <div class="info-card">
+                    <p><strong>Nome:</strong> Usuário Exemplo</p>
+                    <p><strong>E-mail:</strong> usuario@email.com</p>
                     <p><strong>Telefone:</strong> (11) 99999-6666</p>
                 </div>
-            </div>
+            </section>
 
-            <!-- Aba: Estante de Leitura (Comprados) -->
-            <div id="tab-estante" class="tab-content">
+            <section id="tab-estante" class="tab-content">
                 <h2 class="section-title">Estante de Leitura (Livros Comprados)</h2>
                 <div class="grid-cards" id="estante-grid"></div>
-            </div>
+            </section>
 
-            <!-- Aba: Lista de Desejos -->
-            <div id="tab-desejos" class="tab-content">
+            <section id="tab-desejos" class="tab-content">
                 <h2 class="section-title">Lista de Desejos</h2>
                 <div class="grid-cards" id="desejos-grid"></div>
-            </div>
+            </section>
 
-            <!-- Aba: Endereços -->
-            <div id="tab-enderecos" class="tab-content">
+            <section id="tab-enderecos" class="tab-content">
                 <h2 class="section-title">Meus Endereços</h2>
-                <div style="background: var(--bg-card); padding: 20px; border-radius: 6px; border: 1px solid var(--border-color); margin-bottom: 15px;">
+                <div class="info-card">
                     <p><strong>Endereço Principal:</strong> Rua Exemplo dos Santos, 123 - Centro</p>
                     <p>São Paulo - SP | CEP: 01001-000</p>
                 </div>
-                <button class="btn" onclick="alert('Endereço adicionado com sucesso!')">+ Adicionar Novo Endereço</button>
-            </div>
+                <button type="button" class="btn" onclick="alert('Endereço adicionado com sucesso!')">+ Adicionar Novo Endereço</button>
+            </section>
 
-            <!-- Aba: Login -->
-            <div id="tab-login" class="tab-content">
+            <section id="tab-login" class="tab-content">
                 <h2 class="section-title">Alterar Senha e Acesso</h2>
-                <div class="form-group">
-                    <label>E-mail de Acesso</label>
-                    <input type="email" value="seunome@gmail.com" disabled>
-                </div>
-                <div class="form-group">
-                    <label>Nova Senha</label>
-                    <input type="password" placeholder="Digite sua nova senha">
-                </div>
-                <button class="btn" onclick="alert('Senha alterada com sucesso!')">Salvar Alterações</button>
-            </div>
-
-            <!-- Aba: Destaques -->
-            <div id="tab-destaques" class="tab-content">
-                <h2 class="section-title">Todos os Destaques</h2>
-                <div class="grid-cards">
-                    <div class="book-card">
-                        <div class="book-info">
-                            <h4>Tratado da Verdadeira Devoção</h4>
-                            <p>São Luís Maria Grignion</p>
-                            <img src="img/tratado.png" alt="tratado" class="logo-img">
-                            <p style="color: var(--accent-gold); font-weight: bold;">R$ 45,00</p>
-                        </div>
-                        <div class="book-actions">
-                            <button class="btn" onclick="adicionarCarrinho('Tratado da Verdadeira Devoção')">Comprar</button>
-                            <button class="btn btn-outline" onclick="adicionarDesejos('Tratado da Verdadeira Devoção')">❤️</button>
-                        </div>
+                <form onsubmit="event.preventDefault(); alert('Senha alterada com sucesso!');">
+                    <div class="form-group">
+                        <label for="user-email">E-mail de Acesso</label>
+                        <input type="email" id="user-email" value="usuario@email.com" disabled>
                     </div>
-                </div>
-            </div>
+                    <div class="form-group">
+                        <label for="new-password">Nova Senha</label>
+                        <input type="password" id="new-password" placeholder="Digite sua nova senha" required minlength="6">
+                    </div>
+                    <button type="submit" class="btn">Salvar Alterações</button>
+                </form>
+            </section>
+
+            <section id="tab-destaques" class="tab-content">
+                <h2 class="section-title">Todos os Destaques</h2>
+                <div class="grid-cards" id="all-highlights-grid"></div>
+            </section>
 
         </main>
     </div>
 
-    <!-- Rodapé Estilizado -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-col">
                 <h3 class="footer-logo">Santidade</h3>
-                <p>Oferecemos livros nas áreas de religião, cristianismo, família, literatura, política, ciências sociais, filosofia, economia e muito mais! Aproveite para conhecer nossos outros produtos e fique ligado nas ofertas e promoções!</p>
+                <p>Oferecemos livros nas áreas de religião, cristianismo, família, literatura e filosofia.</p>
             </div>
             <div class="footer-col">
                 <h4>INSTITUCIONAL</h4>
                 <ul>
-                    <li><a href="#" onclick="mudarAba('home')">Início</a></li>
-                    <li><a href="#" onclick="mudarAba('destaques')">Mais vendidos</a></li>
-                    <li><a href="#">Autores</a></li>
-                    <li><a href="#">Editoras</a></li>
-                    <li><a href="#">Envie originais</a></li>
+                    <li><button type="button" class="btn-link" onclick="mudarAba('home')">Início</button></li>
+                    <li><button type="button" class="btn-link" onclick="mudarAba('destaques')">Mais vendidos</button></li>
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>INFORMAÇÕES</h4>
                 <ul>
-                    <li><a href="#">Frete grátis</a></li>
-                    <li><a href="#" onclick="window.open('https://wa.me/5511999999999', '_blank')">Suporte (WhatsApp)</a></li>
-                    <li><a href="#">Trocas e devoluções</a></li>
-                    <li><a href="#">Termos de uso</a></li>
-                    <li><a href="#">Política de privacidade</a></li>
+                    <li><a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer">Suporte (WhatsApp)</a></li>
                     <li><span class="footer-phone">(11) 3489-0000</span></li>
                 </ul>
             </div>
@@ -242,38 +141,33 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Editora Santidade - EDITORA FAKE LTDA - CNPJ: 00.000.000/0001-00</p>
+            <p>Editora Santidade LTDA - CNPJ: 00.000.000/0001-00</p>
             <p>© 2026 Todos os direitos reservados</p>
         </div>
     </footer>
 
-    <!-- Botão Flutuante do WhatsApp -->
-    <a href="https://wa.me/5511999990724" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-  </a>
+    <a href="https://wa.me/5511999990724" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Falar no WhatsApp">
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
 
-    <!-- Modal do Carrinho -->
-    <div class="modal-overlay" id="cart-modal">
+    <div class="modal-overlay" id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
         <div class="cart-drawer">
             <div class="cart-header">
-                <h3>Seu Carrinho</h3>
-                <button class="close-cart" onclick="fecharCarrinho()">&times;</button>
+                <h3 id="cart-title">Seu Carrinho</h3>
+                <button type="button" class="close-cart" onclick="fecharCarrinho()" aria-label="Fechar carrinho">&times;</button>
             </div>
-            <div class="cart-items" id="cart-items-container">
-                <p style="color: var(--text-muted); text-align: center; margin-top: 20px;">Seu carrinho está vazio.</p>
-            </div>
+            <div class="cart-items" id="cart-items-container"></div>
             <div class="cart-footer">
                 <div class="cart-total">
                     <span>Total:</span>
                     <span id="cart-total-price">R$ 0,00</span>
                 </div>
-                <button class="btn" style="width: 100%;" onclick="alert('Compra finalizada com sucesso!')">Finalizar Pedido</button>
+                <button type="button" class="btn btn-full" onclick="alert('Compra finalizada com sucesso!')">Finalizar Pedido</button>
             </div>
         </div>
     </div>
-    
-    <script src="script/script.js"></script>
+
 </body>
 </html>
