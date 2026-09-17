@@ -16,7 +16,7 @@
         </div>
         <div class="user-actions">
             <button class="login-btn" onclick="abrirLogin()">👤 Login</button>
-            <button class="cart-btn">🛒 0</button>
+            <button class="cart-btn" onclick="rolarParaReservas()">🛒 <span id="cartCount">0</span></button>
         </div>
     </header>
 
@@ -24,7 +24,9 @@
     <nav>
         <a href="#inicio">Início</a>
         <a href="#racas">Raças Atendidas</a>
+        <a href="#acomodacoes">Acomodações</a>
         <a href="#reservas">Reservas</a>
+        <a href="#localizacao">Onde Estamos</a>
         <a href="#contato">Contato</a>
     </nav>
 
@@ -37,7 +39,7 @@
             <a href="#reservas" class="btn-primary">Reserve agora mesmo clicando aqui!</a>
         </div>
         <div class="hero-img-container">
-            <img src="img/pet.jpg" alt="Pet Hotel Cães e Gatos" class="hero-circle-img">
+            <img src="img/pet.jpg" alt="Pet Hotel Cães e Gatos" class="hero-circle-img" onerror="this.src='https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=600&q=80'">
         </div>
     </section>
 
@@ -47,17 +49,17 @@
             <h2 class="section-title">Especialistas em Cada Detalhe do Seu Pet</h2>
             <div class="cards-grid">
                 <div class="card">
-                    <img src="img/auau.png" alt="Pet Hotel Cães e Gatos">
+                    <img src="img/auau.png" alt="Cães" onerror="this.src='https://images.unsplash.com/photo-1534361960057-19889db9875e?auto=format&fit=crop&w=400&q=80'">
                     <h3>🐾 Cães de Todas as Raças</h3>
                     <p>De pequenos Shih-tzus a grandiosos Golden Retrievers, nossos espaços são adaptados para garantir energia gasta com segurança e socialização saudável.</p>
                 </div>
                 <div class="card">
-                    <img src="img/miau.png" alt="Pet Hotel Cães e Gatos">
+                    <img src="img/miau.png" alt="Gatos" onerror="this.src='https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=400&q=80'">
                     <h3>🐈 Gatos e Espaços Verticais</h3>
                     <p>Áreas 100% livres de cães, focadas no comportamento felino com enriquecimento ambiental, prateleiras altas e total calmaria.</p>
                 </div>
                 <div class="card">
-                    <img src="img/cmnfi.png" alt="Pet Hotel Cães e Gatos">
+                    <img src="img/cmnfi.png" alt="Monitoramento Veterinário" onerror="this.src='https://images.unsplash.com/photo-1628009368231-7bb7cfcb0def?auto=format&fit=crop&w=400&q=80'">
                     <h3>🩺 Monitoramento Veterinário</h3>
                     <p>Equipe de plantão e profissionais especializados em etologia clínica para cuidar de animais com necessidades especiais ou rotinas de medicamentos.</p>
                 </div>
@@ -65,24 +67,36 @@
         </div>
     </section>
 
+    <!-- Seção de Catálogo de Acomodações -->
+    <section class="rooms-section" id="acomodacoes">
+        <div class="container">
+            <h2 class="section-title">Nossas Acomodações</h2>
+            <p class="section-subtitle">Conheça as suítes preparadas com todo carinho para o conforto do seu pet.</p>
+            <div class="rooms-grid" id="roomsContainer">
+                <!-- Acomodações renderizadas dinamicamente pelo JavaScript -->
+            </div>
+        </div>
+    </section>
+
     <!-- Seção de Reservas -->
     <section class="reservation-section" id="reservas">
         <div class="container">
-            <h2 class="section-title">RESERVAS</h2>
-            <p class="reservation-subtitle">ATENÇÃO: Para hospedar seu gato na Gatolândia é obrigatório que ele atenda a <strong>todos</strong> os requisitos abaixo:</p>
+            <h2 class="section-title">SISTEMA DE RESERVA DE QUARTOS</h2>
+            <p class="reservation-subtitle">ATENÇÃO: Para hospedar seu pet é obrigatório que ele atenda a todos os requisitos de vacinação e saúde.</p>
             
             <div class="reservation-card-wrapper">
                 <form id="reservaForm" class="reservation-form" onsubmit="enviarReserva(event)">
+                    
                     <div class="checkbox-group">
                         <label><input type="checkbox" required> É castrado(a) ou menor de 5 meses</label>
                         <label><input type="checkbox" required> Vacina Anual Antirrábica em Dia</label>
-                        <label><input type="checkbox" required> Vacina Anual V4 ou V5 em Dia</label>
+                        <label><input type="checkbox" required> Vacina Anual V4/V5 (Gatos) ou V10/V8 (Cães) em Dia</label>
                         <label><input type="checkbox" required> Está saudável ou tem doença crônica controlada</label>
                     </div>
 
                     <div class="form-row">
                         <input type="text" id="nomeTutor" placeholder="Seu nome" required>
-                        <select id="especiePet" required style="padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                        <select id="especiePet" required onchange="filtrarAcomodacoes()">
                             <option value="">Espécie do Pet</option>
                             <option value="Gato">Gato</option>
                             <option value="Cachorro">Cachorro</option>
@@ -98,16 +112,62 @@
                         <input type="text" placeholder="Telefone" required>
                     </div>
 
+                    <!-- Seleção de Acomodação e Datas -->
+                    <div class="form-row-full">
+                        <label for="quartoSelect" class="input-label">Selecione o Quarto / Suíte:</label>
+                        <select id="quartoSelect" required onchange="calcularReservaTempoReal()">
+                            <option value="">Selecione primeiro a espécie do pet...</option>
+                        </select>
+                    </div>
+
+                    <div class="form-row">
+                        <div>
+                            <label for="checkinDate" class="input-label">Data de Check-in:</label>
+                            <input type="date" id="checkinDate" required onchange="calcularReservaTempoReal()">
+                        </div>
+                        <div>
+                            <label for="checkoutDate" class="input-label">Data de Check-out:</label>
+                            <input type="date" id="checkoutDate" required onchange="calcularReservaTempoReal()">
+                        </div>
+                    </div>
+
+                    <!-- Resumo do Valor em Tempo Real -->
+                    <div class="price-summary-box" id="priceSummary" style="display: none;">
+                        <div class="summary-line"><span>Diárias:</span> <strong id="summaryNights">0</strong></div>
+                        <div class="summary-line"><span>Valor por diária:</span> <strong id="summaryDailyPrice">R$ 0,00</strong></div>
+                        <div class="summary-line total-line"><span>Total da Hospedagem:</span> <strong id="summaryTotal">R$ 0,00</strong></div>
+                    </div>
+
                     <div class="checkbox-group secondary-checks">
                         <label><input type="checkbox" required> Declaro que as informações acima prestadas são verdadeiras.</label>
-                        <label><input type="checkbox"> Ciente de que, caso o(s) gato(s) possua necessidade de cuidados especiais, devo entrar em contato pelo WhatsApp para orientações.</label>
+                        <label><input type="checkbox"> Ciente de que, caso o(s) pet(s) possua necessidade de cuidados especiais, devo entrar em contato pelo WhatsApp.</label>
                         <label><input type="checkbox" required> Aceito os termos e condições</label>
                     </div>
 
-                    <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Faça sua reserva</button>
+                    <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Confirmar e Reservar Quarto</button>
                     
                     <p class="reservation-footer-text">Em caso de dúvidas entre em contato pelo chat ou WhatsApp.</p>
                 </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção de Localização com Mapa -->
+    <section class="map-section" id="localizacao">
+        <div class="container">
+            <h2 class="section-title">NOSSA LOCALIZAÇÃO</h2>
+            <p class="section-subtitle">Venha nos fazer uma visita ou agende um tour antes da hospedagem!</p>
+            
+            <div class="map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3657.182602758117!2d-46.65657118439169!3d-23.561911967484437!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94ce59c8da0aa315%3A0xd59f9431f228976d!2sAv.%20Paulista%20-%20Bela%20Vista%2C%20S%C3%A3o%20Paulo%20-%20SP!5e0!3m2!1spt-BR!2sbr!4v1680000000000!5m2!1spt-BR!2sbr" 
+                    width="100%" 
+                    height="400" 
+                    style="border:0; border-radius: 12px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
         </div>
     </section>
@@ -127,7 +187,7 @@
                 <p>E-mail: contato@refugiodaspatasfake.com.br</p>
             </div>
             <div class="footer-col">
-                <h3>Localização Fictícia</h3>
+                <h3>Localização</h3>
                 <p>Alameda dos Pássaros Silvestres, nº 404</p>
                 <p>Bairro Bosque Encantado - São Paulo / SP</p>
             </div>
@@ -139,10 +199,11 @@
 
     <!-- Botão Flutuante do WhatsApp -->
     <a href="https://wa.me/5511999990724" class="whatsapp-float" target="_blank" aria-label="Falar no WhatsApp">
-    <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
-      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
-    </svg>
-  </a>
+        <svg viewBox="0 0 24 24" width="32" height="32" fill="currentColor">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+        </svg>
+    </a>
+
     <!-- Modal de Login -->
     <div class="modal-overlay" id="modalLogin">
         <div class="modal-box">
