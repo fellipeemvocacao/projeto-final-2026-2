@@ -23,6 +23,7 @@
           <li><a href="index.html" class="active">HOME</a></li>
           <li><a href="html/nos.html">A ESCOLA</a></li>
           <li><a href="html/turmas.html">TURMAS</a></li>
+          <li><a href="#planos">PLANOS</a></li>
           <li><a href="html/feedback.html">FEEDBACKS</a></li>
           <li><a href="html/contato.html">CONTATO</a></li>
         </ul>
@@ -99,9 +100,10 @@
           <span>UNIDADE PILOTO</span>
         </div>
       </div>
-        <div class="conquista-banner">
+      
+      <div class="conquista-banner">
         <div class="conquista-selo">
-          <span>ESCOLA DE VOLÊI</span>
+          <span>ESCOLA DE VÔLEI</span>
           <small>PILOTO, SANTANA E ANÁLIA FRANCO</small>
         </div>
         <div class="conquista-foto">
@@ -112,6 +114,7 @@
           <p>RAFAEL DAIS - ARTILHEIRO</p>
           <span>UNIDADE SÃO BERNARDO</span>
         </div>
+      </div>
     </section>
 
     <!-- Seção: Nossas Unidades (Estilo Colunas de Fundo) -->
@@ -170,6 +173,72 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+    <!-- NOVIDADE: Seção de Planos de Mensalidade Personalizados -->
+    <section class="secao-planos" id="planos">
+      <h2 class="titulo-principal">MONTE O SEU PLANO PERSONALIZADO</h2>
+      <p class="subtitulo-planos">Escolha a modalidade e a frequência para ver a mensalidade sob medida para você!</p>
+
+      <div class="planos-container">
+        
+        <!-- Formulário Dinâmico de Escolha -->
+        <div class="planos-configurador">
+          
+          <div class="form-grupo">
+            <label><i class="fa-solid fa-trophy"></i> Modalidade Desejada:</label>
+            <select id="plano-modalidade">
+              <option value="futebol" data-preco="130">Apenas Futebol (A partir de R$ 130/mês)</option>
+              <option value="volei" data-preco="120">Apenas Vôlei (A partir de R$ 120/mês)</option>
+              <option value="duplo" data-preco="210">Combo Futebol + Vôlei (A partir de R$ 210/mês)</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label><i class="fa-solid fa-calendar-days"></i> Frequência Semanal:</label>
+            <select id="plano-frequencia">
+              <option value="1x" data-multiplicador="1">1x por semana</option>
+              <option value="2x" data-multiplicador="1.5">2x por semana (Desconto de 25%)</option>
+              <option value="3x" data-multiplicador="2">3x por semana (Desconto de 33%)</option>
+            </select>
+          </div>
+
+          <div class="form-grupo">
+            <label><i class="fa-solid fa-handshake-simple"></i> Plano de Fidelidade:</label>
+            <select id="plano-duracao">
+              <option value="mensal" data-desconto="0">Mensal sem fidelidade</option>
+              <option value="semestral" data-desconto="0.10">Semestral (10% de desconto adicional)</option>
+              <option value="anual" data-desconto="0.20">Anual (20% de desconto adicional)</option>
+            </select>
+          </div>
+
+        </div>
+
+        <!-- Card Demonstrativo do Valor Calculado -->
+        <div class="plano-card-resultado">
+          <span class="plano-badge-destaque">SEU PLANO PERSONALIZADO</span>
+          <h3 id="res-modalidade-titulo">Futebol</h3>
+          
+          <ul class="plano-beneficios">
+            <li><i class="fa-solid fa-check text-success"></i> Uniforme oficial de treino incluso</li>
+            <li><i class="fa-solid fa-check text-success"></i> Acompanhamento tático e pedagógico</li>
+            <li><i class="fa-solid fa-check text-success"></i> Professores credenciados CREF</li>
+            <li id="res-freq-texto"><i class="fa-solid fa-check text-success"></i> Aulas 1x por semana</li>
+            <li id="res-duracao-texto"><i class="fa-solid fa-check text-success"></i> Plano Mensal</li>
+          </ul>
+
+          <div class="plano-preco-box">
+            <span class="moeda">R$</span>
+            <span class="valor" id="res-valor-total">130</span>
+            <span class="periodo">/mês</span>
+          </div>
+
+          <a href="#" id="btn-contratar-whatsapp" class="btn-contratar" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i> GARANTIR ESTA MENSALIDADE
+          </a>
+        </div>
+
       </div>
     </section>
 

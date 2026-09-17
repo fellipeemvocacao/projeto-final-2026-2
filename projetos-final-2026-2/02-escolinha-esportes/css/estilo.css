@@ -540,3 +540,157 @@ body {
     text-align: center;
   }
 }
+/* =========================================================
+   Seção de Planos Personalizados
+   ========================================================= */
+
+.secao-planos {
+  padding: 60px 20px;
+  background-color: #f8fafc;
+  text-align: center;
+}
+
+.subtitulo-planos {
+  color: #64748b;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.planos-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  align-items: center;
+  text-align: left;
+}
+
+.planos-configurador {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+}
+
+.form-grupo {
+  margin-bottom: 20px;
+}
+
+.form-grupo label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #1e293b;
+}
+
+.form-grupo select {
+  width: 100%;
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  background-color: #ffffff;
+  font-size: 1rem;
+  color: #334155;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-grupo select:focus {
+  border-color: #16a34a;
+}
+
+/* Card do Resultado */
+.plano-card-resultado {
+  background: linear-gradient(135deg, #15803d, #166534);
+  color: #ffffff;
+  padding: 35px 30px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(22, 101, 52, 0.3);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.plano-badge-destaque {
+  background: #f59e0b;
+  color: #000000;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 12px;
+  border-radius: 20px;
+  width: fit-content;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.plano-card-resultado h3 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.plano-beneficios {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px 0;
+}
+
+.plano-beneficios li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.text-success {
+  color: #4ade80;
+}
+
+.plano-preco-box {
+  margin-bottom: 25px;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.plano-preco-box .moeda {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.plano-preco-box .valor {
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.plano-preco-box .periodo {
+  font-size: 1rem;
+  opacity: 0.8;
+}
+
+.btn-contratar {
+  background-color: #25d366;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s, transform 0.2s;
+  display: block;
+}
+
+.btn-contratar:hover {
+  background-color: #1ebd56;
+  transform: translateY(-2px);
+}
+
+/* Adaptabilidade Mobile */
+@media (max-width: 768px) {
+  .planos-container {
+    grid-template-columns: 1fr;
+  }
+}
