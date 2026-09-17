@@ -14,8 +14,8 @@
         <div class="header-container">
             <button type="button" class="logo-btn" onclick="mudarAba('home')" aria-label="Ir para a página inicial">Santidade</button>
             
-            <form class="search-bar" onsubmit="realizarBusca(event)">
-                <input type="search" id="global-search" placeholder="Buscar livro, autor, tema..." aria-label="Buscar livros">
+            <form class="search-bar" onsubmit="realizarBuscaSimples(event)">
+                <input type="search" id="global-search" placeholder="Buscar livro, autor..." aria-label="Buscar livros">
                 <button type="submit" aria-label="Pesquisar">🔍</button>
             </form>
 
@@ -28,7 +28,6 @@
                 </button>
             </div>
         </div>
-
     </header>
 
     <div class="main-layout">
@@ -37,9 +36,11 @@
             <nav aria-label="Menu do usuário">
                 <ul>
                     <li><button type="button" onclick="mudarAba('home')" id="btn-home" class="active">Página Inicial</button></li>
-                    <li><button type="button" onclick="mudarAba('conta')" id="btn-conta">Minha Conta</button></li>
+                    <li><button type="button" onclick="mudarAba('catalogo')" id="btn-catalogo">Catálogo Completo</button></li>
+                    <li><button type="button" onclick="mudarAba('clube')" id="btn-clube">⭐ Clube de Assinatura</button></li>
                     <li><button type="button" onclick="mudarAba('estante')" id="btn-estante">Estante de Leitura</button></li>
                     <li><button type="button" onclick="mudarAba('desejos')" id="btn-desejos">Lista de Desejos</button></li>
+                    <li><button type="button" onclick="mudarAba('conta')" id="btn-conta">Minha Conta</button></li>
                     <li><button type="button" onclick="mudarAba('enderecos')" id="btn-enderecos">Endereços de Entrega</button></li>
                     <li><button type="button" onclick="mudarAba('login')" id="btn-login">Dados de Login</button></li>
                 </ul>
@@ -48,28 +49,136 @@
 
         <main class="content-area">
             
+            <!-- ABA: INÍCIO -->
             <section id="tab-home" class="tab-content active">
-                <article class="main-banner">
+                <!-- Banner Principal de Promoção Destacada -->
+                <div class="main-banner">
                     <div class="banner-text">
-                        <span class="badge-promo">PROMOÇÃO ESPECIAL</span>
-                        <h1>Castelo Interior ou Moradas</h1>
-                        <p>Descubra as obras que transformaram a fé em vida pura e dedicação espiritual.</p>
-                        <p class="price-tag">R$ 50,00</p>
-                        <img src="img/moradas.png" alt="Capa do livro Castelo Interior ou Moradas de Santa Teresa de Ávila" class="logo-img">
-                        <button type="button" class="btn btn-banner" onclick="adicionarCarrinho('1')">Aproveitar Promoção</button>
+                        <span class="badge-promo">OFERTA ESPECIAL</span>
+                        <h1>In Sinu Jesu</h1>
+                        <p>
+                            Quando o Coração fala ao coração: o diário de um sacerdote em oração. 
+                            Uma obra profunda de espiritualidade, com relatórios diários de oração, iluminação interior e adoração eucarística.
+                        </p>
+                        <p class="banner-price">De <s style="opacity: 0.7;">R$ 99,90</s> por <strong>R$ 70,93</strong></p>
+                        <button class="btn btn-banner" onclick="adicionarAoCarrinho('In Sinu Jesu', 70.93, 'images/in-sinu-jesu.jpg')">
+                            Garantir Meu Exemplar
+                        </button>
                     </div>
-                </article>
+                    <img src="img/in-sinu-jesu.png" alt="Capa In Sinu Jesu" class="logo-img">
+                </div>
+                <div class="book-card">
+                    <span class="category-badge">Espiritualidade / Vida Cristã</span>
+                    <img src="img/in-sinu-jesu.png" alt="In Sinu Jesu" class="logo-img">
+                    <div class="book-info">
+                        <h4>In Sinu Jesu</h4>
+                        <p>Um Monge Beneditino / Editora Ecclesiae</p>
+                        <div class="rating-info">★★★★★ (5.0)</div>
+                        <p class="price-tag">R$ 70,93 <s style="font-size: 0.8rem; color: #888;">R$ 99,90</s></p>
+                    </div>
+                    <div class="book-actions">
+                        <button class="btn btn-outline" onclick="abrirModalResenhas('In Sinu Jesu')">Resenhas</button>
+                        <button class="btn" onclick="adicionarAoCarrinho('In Sinu Jesu', 70.93, 'images/in-sinu-jesu.jpg')">Comprar</button>
+                    </div>
+                </div>                
+                <h2 class="section-title">Navegue por Categoria</h2>
+                <div class="category-pills" id="home-category-pills">
+                    <!-- Categorias renderizadas dinamicamente -->
+                </div>
 
-                <h2 class="section-title">Produtos em Destaque</h2>
+                <h2 class="section-title" style="margin-top: 30px;">Produtos em Destaque</h2>
                 <div class="grid-cards" id="home-featured-grid"></div>
             </section>
 
+            <!-- ABA: CATÁLOGO & BUSCA AVANÇADA -->
+            <section id="tab-catalogo" class="tab-content">
+                <h2 class="section-title">Busca Avançada & Catálogo</h2>
+                
+                <div class="advanced-search-box">
+                    <div class="search-row">
+                        <div class="form-group">
+                            <label for="adv-text">Título ou Autor:</label>
+                            <input type="text" id="adv-text" placeholder="Ex: Tomás de Aquino, Bíblia..." oninput="executarBuscaAvançada()">
+                        </div>
+                        <div class="form-group">
+                            <label for="adv-category">Categoria:</label>
+                            <select id="adv-category" onchange="executarBuscaAvançada()">
+                                <option value="">Todas as Categorias</option>
+                                <option value="Espiritualidade">Espiritualidade</option>
+                                <option value="Teologia">Teologia</option>
+                                <option value="Bíblicos">Bíblicos</option>
+                                <option value="Filosofia">Filosofia</option>
+                                <option value="História">História</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="search-row">
+                        <div class="form-group">
+                            <label for="adv-max-price">Preço Máximo: R$ <span id="price-display">350</span></label>
+                            <input type="range" id="adv-max-price" min="10" max="350" step="5" value="350" oninput="atualizarLabelPreco(); executarBuscaAvançada();">
+                        </div>
+                        <div class="form-group">
+                            <label for="adv-sort">Ordenar Por:</label>
+                            <select id="adv-sort" onchange="executarBuscaAvançada()">
+                                <option value="padrao">Padrão</option>
+                                <option value="preco-asc">Menor Preço</option>
+                                <option value="preco-desc">Maior Preço</option>
+                                <option value="nome-asc">Nome (A - Z)</option>
+                                <option value="avaliacoes">Melhores Avaliados</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid-cards" id="catalogo-grid"></div>
+            </section>
+
+            <!-- ABA: CLUBE DE ASSINATURA -->
+            <section id="tab-clube" class="tab-content">
+                <div class="clube-header">
+                    <h2 class="section-title">Clube de Assinatura Santidade</h2>
+                    <p class="section-subtitle">Receba mensalmente na sua casa uma curadoria exclusiva de grandes obras clássicas e espirituais.</p>
+                </div>
+
+                <div class="clube-plans-grid">
+                    <div class="plan-card">
+                        <span class="plan-badge">PLANO MENSAL</span>
+                        <h3>Clube Devoto</h3>
+                        <p class="plan-price">R$ 59,90 <span>/mês</span></p>
+                        <ul class="plan-features">
+                            <li>✓ 1 Livro selecionado no mês</li>
+                            <li>✓ Marca-página exclusivo</li>
+                            <li>✓ Guia de leitura digital</li>
+                            <li>✓ Frete Grátis para todo o Brasil</li>
+                        </ul>
+                        <button type="button" class="btn btn-full" onclick="assinarClube('Clube Devoto (Mensal)')">Assinar Plano Mensal</button>
+                    </div>
+
+                    <div class="plan-card featured-plan">
+                        <span class="plan-badge gold">PLANO ANUAL (MAIS POPULAR)</span>
+                        <h3>Clube Teólogo</h3>
+                        <p class="plan-price">R$ 49,90 <span>/mês</span></p>
+                        <p class="plan-savings">Economize 17% ao ano</p>
+                        <ul class="plan-features">
+                            <li>✓ 1 Livro em edição especial capa dura</li>
+                            <li>✓ Mimo e brindes surpresa exclusivos</li>
+                            <li>✓ Marca-página em metal</li>
+                            <li>✓ 15% de desconto em toda a loja virtual</li>
+                            <li>✓ Frete Grátis para todo o Brasil</li>
+                        </ul>
+                        <button type="button" class="btn btn-full btn-gold" onclick="assinarClube('Clube Teólogo (Anual)')">Assinar Plano Anual</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DEMAIS ABAS PERMANECEM -->
             <section id="tab-conta" class="tab-content">
                 <h2 class="section-title">Minha Conta</h2>
                 <div class="info-card">
                     <p><strong>Nome:</strong> Usuário Exemplo</p>
                     <p><strong>E-mail:</strong> usuario@email.com</p>
                     <p><strong>Telefone:</strong> (11) 99999-6666</p>
+                    <p><strong>Assinatura Ativa:</strong> <span id="user-club-status">Nenhuma assinatura ativa</span></p>
                 </div>
             </section>
 
@@ -107,14 +216,49 @@
                 </form>
             </section>
 
-            <section id="tab-destaques" class="tab-content">
-                <h2 class="section-title">Todos os Destaques</h2>
-                <div class="grid-cards" id="all-highlights-grid"></div>
-            </section>
-
         </main>
     </div>
 
+    <!-- MODAL DE RESENHAS E AVALIAÇÕES -->
+    <div class="modal-overlay" id="reviews-modal" role="dialog" aria-modal="true">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-book-title">Resenhas do Livro</h3>
+                <button type="button" class="close-modal" onclick="fecharModalResenhas()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="reviews-list" id="modal-reviews-list"></div>
+                
+                <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;">
+                
+                <h4>Escrever uma Resenha</h4>
+                <form id="add-review-form" onsubmit="salvarResenha(event)">
+                    <input type="hidden" id="review-book-id">
+                    <div class="form-group">
+                        <label for="review-author">Seu Nome:</label>
+                        <input type="text" id="review-author" required placeholder="Ex: Maria Silva">
+                    </div>
+                    <div class="form-group">
+                        <label for="review-rating">Avaliação:</label>
+                        <select id="review-rating" required>
+                            <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                            <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                            <option value="3">⭐⭐⭐ (3/5)</option>
+                            <option value="2">⭐⭐ (2/5)</option>
+                            <option value="1">⭐ (1/5)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="review-comment">Sua Resenha:</label>
+                        <textarea id="review-comment" rows="3" required placeholder="O que você achou desta obra?"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Enviar Resenha</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- RODAPÉ -->
     <footer class="site-footer">
         <div class="footer-container">
             <div class="footer-col">
@@ -125,7 +269,8 @@
                 <h4>INSTITUCIONAL</h4>
                 <ul>
                     <li><button type="button" class="btn-link" onclick="mudarAba('home')">Início</button></li>
-                    <li><button type="button" class="btn-link" onclick="mudarAba('destaques')">Mais vendidos</button></li>
+                    <li><button type="button" class="btn-link" onclick="mudarAba('catalogo')">Catálogo Completo</button></li>
+                    <li><button type="button" class="btn-link" onclick="mudarAba('clube')">Clube de Assinatura</button></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -152,6 +297,7 @@
         </svg>
     </a>
 
+    <!-- MODAL CARRINHO -->
     <div class="modal-overlay" id="cart-modal" role="dialog" aria-modal="true" aria-labelledby="cart-title">
         <div class="cart-drawer">
             <div class="cart-header">
