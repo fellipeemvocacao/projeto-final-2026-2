@@ -37,40 +37,118 @@ body {
   box-shadow: 0 2px 10px rgba(0,0,0,0.15);
 }
 
-.nav-container-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 12px 30px;
+/* Resets básicos */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-.logo-top h1 {
-  font-size: 1.4rem;
-  font-weight: 900;
-  color: var(--primary-red);
+/* Cabeçalho Fixo na parte superior */
+.site-header-top {
+  background-color: #111827; /* Tom escuro e moderno */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container-top {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo-top h1 a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 800;
   letter-spacing: 1px;
 }
 
+/* Menu Desktop */
 .nav-menu-top ul {
   display: flex;
   list-style: none;
-  gap: 25px;
+  gap: 20px;
 }
 
 .nav-menu-top a {
+  color: #d1d5db;
   text-decoration: none;
-  color: #333;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  transition: color 0.2s;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
 }
 
 .nav-menu-top a:hover,
 .nav-menu-top a.active {
-  color: var(--primary-red);
+  color: #ffffff;
+  background-color: #16a34a; /* Verde Esportivo */
+}
+
+/* Botão Hambúrguer (Mobile) */
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 20px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  height: 3px;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Responsividade (Telas abaixo de 768px) */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-menu-top {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #111827;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+  }
+
+  .nav-menu-top.open {
+    max-height: 350px;
+  }
+
+  .nav-menu-top ul {
+    flex-direction: column;
+    padding: 20px;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .nav-menu-top a {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 }
 
 .social-icons {

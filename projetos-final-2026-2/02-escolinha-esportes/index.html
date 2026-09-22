@@ -13,21 +13,29 @@
 
   <!-- Cabeçalho Principal (Estilo Barra Superior) -->
   <header class="site-header-top">
-    <div class="nav-container-top">
-      <div class="logo-top">
-        <h1>⚽ CRAQUES</h1>
-      </div>
-      
-      <nav class="nav-menu-top" aria-label="Navegação principal">
-        <ul>
-          <li><a href="index.html" class="active">HOME</a></li>
-          <li><a href="html/nos.html">A ESCOLA</a></li>
-          <li><a href="html/turmas.html">TURMAS</a></li>
-          <li><a href="#planos">PLANOS</a></li>
-          <li><a href="html/feedback.html">FEEDBACKS</a></li>
-          <li><a href="html/contato.html">CONTATO</a></li>
-        </ul>
-      </nav>
+  <div class="nav-container-top">
+    <div class="logo-top">
+      <h1><a href="index.html" class="active">⚽ CRAQUES</a></h1>
+    </div>
+
+    <!-- Botão Hambúrguer para telas menores (Mobile) -->
+    <button class="menu-toggle" id="menuToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+    
+    <nav class="nav-menu-top" id="navMenu" aria-label="Navegação principal">
+      <ul>
+        <li><a href="index.html" class="active">HOME</a></li>
+        <li><a href="html/nos.html">A ESCOLA</a></li>
+        <li><a href="html/turmas.html">TURMAS</a></li>
+        <li><a href="#planos">PLANOS</a></li>
+        <li><a href="html/feedback.html">FEEDBACKS</a></li>
+        <li><a href="html/contato.html">CONTATO</a></li>
+      </ul>
+    </nav>
+  </div>
 
       <div class="social-icons">
         <a href="https://www.youtube.com" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
