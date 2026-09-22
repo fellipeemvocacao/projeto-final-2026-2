@@ -111,20 +111,33 @@
     </footer>
 
     <!-- Estrutura do Chatbot -->
-    <div class="chatbot-container">
-        <button id="chatbotToggle" class="chatbot-toggle">🦷 Atendimento Online</button>
+<div class="chatbot-container">
+        <!-- BOTÃO PARA ABRIR/FECHAR -->
+        <button id="chatbotToggle" class="chatbot-toggle" aria-label="Atendimento Online">
+            <span>🦷</span> Atendimento Online
+        </button>
+
+        <!-- ESTRUTURA DA CAIXA DO CHATBOT -->
         <div id="chatbotBox" class="chatbot-box hidden">
             <div class="chatbot-header">
-                <span>Assistente Sorriso</span>
-                <button id="chatbotClose">&times;</button>
+                <div class="header-info">
+                    <div class="avatar">🦷</div>
+                    <div>
+                        <h3>Assistente Sorriso</h3>
+                        <p>Clínica Santana • Online</p>
+                    </div>
+                </div>
+                <button id="chatbotClose" aria-label="Fechar atendimento">&times;</button>
             </div>
+
             <div id="chatbotBody" class="chatbot-body">
-                <div class="bot-msg">Olá! Bem-vindo à Clínica Sorriso Santana. Como posso te ajudar hoje?</div>
+                <!-- As mensagens e opções serão geradas dinamicamente aqui -->
             </div>
-            <div class="chatbot-footer">
-                <input type="text" id="chatbotInput" placeholder="Digite sua dúvida...">
-                <button id="chatbotSend">Enviar</button>
-            </div>
+
+            <form id="chatbotForm" class="chatbot-footer">
+                <input type="text" id="chatbotInput" placeholder="Digite sua mensagem..." autocomplete="off">
+                <button type="submit" id="chatbotSend">Enviar</button>
+            </form>
         </div>
     </div>
 
