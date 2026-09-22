@@ -39,7 +39,8 @@ let quantidadeReservas = 0;
 // Inicialização da página
 document.addEventListener('DOMContentLoaded', () => {
     renderizarAcomodacoes();
-    configurarMinDataCheckin();
+    configurarDatasCheckin();
+    configurarEventosFormulario();
 });
 
 // Renderizar lista de acomodações na página
@@ -53,7 +54,7 @@ function renderizarAcomodacoes() {
         const card = document.createElement('div');
         card.className = 'room-card';
         card.innerHTML = `
-            <img src="${quarto.imagem}" alt="${quarto.nome}" class="room-img">
+            <img src="${quarto.imagem}" alt="${quarto.nome}" class="room-img" loading="lazy">
             <div class="room-info">
                 <span class="room-tag">${quarto.especie}</span>
                 <h3>${quarto.nome}</h3>
@@ -61,7 +62,7 @@ function renderizarAcomodacoes() {
                 <ul class="room-features">
                     ${quarto.recursos.map(rec => `<li>✓ ${rec}</li>`).join('')}
                 </ul>
-                <button type="button" class="btn-primary" style="width: 100%; text-align: center;" onclick="selecionarAcomodacaoDireta('${quarto.id}', '${quarto.especie}')">
+                <button type="button" class="btn-primary btn-full" onclick="selecionarAcomodacaoDireta('${quarto.id}', '${quarto.especie}')">
                     Reservar Este Quarto
                 </button>
             </div>
@@ -71,7 +72,7 @@ function renderizarAcomodacoes() {
 }
 
 // Configura a data mínima de check-in para HOJE
-function configurarMinDataCheckin() {
+function configurarDatasCheckin() {
     const hoje = new Date().toISOString().split('T')[0];
     const checkinInput = document.getElementById('checkinDate');
     const checkoutInput = document.getElementById('checkoutDate');
@@ -79,6 +80,41 @@ function configurarMinDataCheckin() {
     if (checkinInput && checkoutInput) {
         checkinInput.min = hoje;
         checkoutInput.min = hoje;
+
+        // Atualiza o min do checkout ao alterar o checkin
+        checkinInput.addEventListener('change', () => {
+            if (checkinInput.value) {
+                checkoutInput.min = checkinInput.value;
+                if (checkoutInput.value && checkoutInput.value <= checkinInput.value) {
+                    checkoutInput.value = '';
+                }
+            }
+            calcularReservaTempoReal();
+        });
+
+        checkoutInput.addEventListener('change', calcularReservaTempoReal);
+    }
+}
+
+// Configuração dos Eventos do Formulário
+function configurarEventosFormulario() {
+    const especieSelect = document.getElementById('especiePet');
+    const quartoSelect = document.getElementById('quartoSelect');
+    const reservaForm = document.getElementById('reservaForm');
+
+    if (especieSelect) {
+        especieSelect.addEventListener('change', () => {
+            filtrarAcomodacoes();
+            calcularReservaTempoReal();
+        });
+    }
+
+    if (quartoSelect) {
+        quartoSelect.addEventListener('change', calcularReservaTempoReal);
+    }
+
+    if (reservaForm) {
+        reservaForm.addEventListener('submit', enviarReserva);
     }
 }
 
@@ -89,10 +125,12 @@ function filtrarAcomodacoes() {
 
     quartoSelect.innerHTML = '<option value="">Selecione um Quarto...</option>';
 
+    if (!especieSelec) return;
+
     const acomodacoesFiltradas = ACOMODACOES.filter(q => q.especie === especieSelec);
 
     if (acomodacoesFiltradas.length === 0) {
-        quartoSelect.innerHTML = '<option value="">Selecione a espécie primeiro...</option>';
+        quartoSelect.innerHTML = '<option value="">Nenhum quarto disponível para esta espécie</option>';
     } else {
         acomodacoesFiltradas.forEach(q => {
             const opt = document.createElement('option');
@@ -101,51 +139,63 @@ function filtrarAcomodacoes() {
             quartoSelect.appendChild(opt);
         });
     }
-
-    calcularReservaTempoReal();
 }
 
 // Seleção direta ao clicar em um Card de Quarto
 function selecionarAcomodacaoDireta(quartoId, especie) {
     const especieSelect = document.getElementById('especiePet');
-    especieSelect.value = especie;
-    
-    filtrarAcomodacoes();
+    if (especieSelect) {
+        especieSelect.value = especie;
+        filtrarAcomodacoes();
+    }
 
     const quartoSelect = document.getElementById('quartoSelect');
-    quartoSelect.value = quartoId;
+    if (quartoSelect) {
+        quartoSelect.value = quartoId;
+    }
 
     rolarParaReservas();
     calcularReservaTempoReal();
 }
 
 function rolarParaReservas() {
-    document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+    const secaoReservas = document.getElementById('reservas');
+    if (secaoReservas) {
+        secaoReservas.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Cálculo do Total em Tempo Real
 function calcularReservaTempoReal() {
-    const quartoId = document.getElementById('quartoSelect').value;
-    const checkinVal = document.getElementById('checkinDate').value;
-    const checkoutVal = document.getElementById('checkoutDate').value;
+    const quartoSelect = document.getElementById('quartoSelect');
+    const checkinInput = document.getElementById('checkinDate');
+    const checkoutInput = document.getElementById('checkoutDate');
     const summaryBox = document.getElementById('priceSummary');
+
+    if (!quartoSelect || !checkinInput || !checkoutInput || !summaryBox) return;
+
+    const quartoId = quartoSelect.value;
+    const checkinVal = checkinInput.value;
+    const checkoutVal = checkoutInput.value;
 
     if (!quartoId || !checkinVal || !checkoutVal) {
         summaryBox.style.display = 'none';
         return;
     }
 
-    const checkin = new Date(checkinVal);
-    const checkout = new Date(checkoutVal);
+    // Tratamento UTC para cálculo exato de dias sem sofrer com timezone
+    const checkin = new Date(`${checkinVal}T00:00:00`);
+    const checkout = new Date(`${checkoutVal}T00:00:00`);
 
     if (checkout <= checkin) {
         summaryBox.style.display = 'block';
-        document.getElementById('summaryTotal').textContent = 'A data de checkout deve ser posterior ao check-in';
-        document.getElementById('summaryNights').textContent = '0';
+        document.getElementById('summaryTotal').textContent = 'Checkout deve ser após o Check-in';
+        document.getElementById('summaryNights').textContent = '0 diárias';
+        document.getElementById('summaryDailyPrice').textContent = 'R$ 0,00';
         return;
     }
 
-    const diferencaTempo = Math.abs(checkout - checkin);
+    const diferencaTempo = checkout.getTime() - checkin.getTime();
     const totalDias = Math.ceil(diferencaTempo / (1000 * 60 * 60 * 24));
 
     const quarto = ACOMODACOES.find(q => q.id === quartoId);
@@ -164,12 +214,13 @@ function calcularReservaTempoReal() {
 // Função para enviar o formulário de reserva
 function enviarReserva(event) {
     event.preventDefault();
+    
     const nome = document.getElementById('nomeTutor').value;
     const especie = document.getElementById('especiePet').value;
     const quartoId = document.getElementById('quartoSelect').value;
     const totalTexto = document.getElementById('summaryTotal').textContent;
 
-    if (!quartoId || totalTexto.includes('posterior')) {
+    if (!quartoId || totalTexto.includes('Checkout')) {
         alert('Por favor, escolha um quarto válido e configure as datas corretamente.');
         return;
     }
@@ -180,7 +231,8 @@ function enviarReserva(event) {
 
     // Atualizar o contador do carrinho
     quantidadeReservas++;
-    document.getElementById('cartCount').textContent = quantidadeReservas;
+    const cartCount = document.getElementById('cartCount');
+    if (cartCount) cartCount.textContent = quantidadeReservas;
 
     document.getElementById('reservaForm').reset();
     document.getElementById('priceSummary').style.display = 'none';
@@ -188,11 +240,13 @@ function enviarReserva(event) {
 
 // Funções do Modal de Login
 function abrirLogin() {
-    document.getElementById('modalLogin').classList.add('active');
+    const modal = document.getElementById('modalLogin');
+    if (modal) modal.classList.add('active');
 }
 
 function fecharLogin() {
-    document.getElementById('modalLogin').classList.remove('active');
+    const modal = document.getElementById('modalLogin');
+    if (modal) modal.classList.remove('active');
 }
 
 function realizarLogin(event) {
@@ -207,4 +261,4 @@ window.onclick = function(event) {
     if (event.target === modal) {
         fecharLogin();
     }
-}
+};

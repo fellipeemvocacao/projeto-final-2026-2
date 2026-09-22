@@ -11,12 +11,15 @@
     <!-- Header -->
     <header>
         <div class="logo-area">
-            <span>🐶🐱<a href="#inicio"></a></span>
-            <span>Hotel São Francisco</span>
+            <!-- Ao clicar no ícone ou no nome, retorna ao topo (#inicio) -->
+            <a href="#inicio" class="brand-link" aria-label="Hotel São Francisco - Ir para a Página Inicial">
+                <span class="logo-icon">🐶🐱</span>
+                <span class="brand-name">Hotel São Francisco</span>
+            </a>
         </div>
         <div class="user-actions">
             <button class="login-btn" onclick="abrirLogin()">👤 Login</button>
-            <button class="cart-btn" onclick="rolarParaReservas()">🛒 <span id="cartCount">0</span></button>
+            <button class="cart-btn" onclick="rolarParaReservas()" aria-label="Ver carrinho de reservas">🛒 <span id="cartCount">0</span></button>
         </div>
     </header>
 
@@ -105,11 +108,11 @@
 
                     <div class="form-row">
                         <input type="email" placeholder="Seu e-mail" required>
-                        <input type="text" placeholder="CPF (somente números)" required>
+                        <input type="text" placeholder="CPF (somente números)" required pattern="\d{11}" title="Digite um CPF com 11 dígitos numéricos">
                     </div>
 
                     <div class="form-row-full">
-                        <input type="text" placeholder="Telefone" required>
+                        <input type="tel" placeholder="Telefone" required>
                     </div>
 
                     <!-- Seleção de Acomodação e Datas -->
@@ -144,7 +147,7 @@
                         <label><input type="checkbox" required> Aceito os termos e condições</label>
                     </div>
 
-                    <button type="submit" class="btn-primary" style="width: 100%; text-align: center;">Confirmar e Reservar Quarto</button>
+                    <button type="submit" class="btn-primary btn-submit">Confirmar e Reservar Quarto</button>
                     
                     <p class="reservation-footer-text">Em caso de dúvidas entre em contato pelo chat ou WhatsApp.</p>
                 </form>
@@ -176,7 +179,7 @@
     <footer id="contato">
         <div class="footer-content">
             <div class="footer-col">
-                <h3>REFÚGIO DAS PATAS RESORT</h3>
+                <h3>HOTEL SÃO FRANCISCO</h3>
                 <p>Proporcionando férias inesquecíveis e cheias de carinho para o seu membro favorito da família.</p>
             </div>
             <div class="footer-col">
@@ -184,7 +187,7 @@
                 <p>Telefone: (11) 4002-8922</p>
                 <p>WhatsApp: (11) 98765-4321</p>
                 <p>Seg a Sex: 09h às 19h | Sáb e Dom: 09h às 17h</p>
-                <p>E-mail: contato@refugiodaspatasfake.com.br</p>
+                <p>E-mail: contato@hotelsaofrancisco.com.br</p>
             </div>
             <div class="footer-col">
                 <h3>Localização</h3>
@@ -193,7 +196,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>Refúgio das Patas LTDA - CNPJ: 99.888.777/0001-11 | Todos os direitos reservados © 2026</p>
+            <p>Hotel São Francisco LTDA - CNPJ: 99.888.777/0001-11 | Todos os direitos reservados © 2026</p>
         </div>
     </footer>
 
@@ -211,14 +214,14 @@
             <h2>Entrar na Conta</h2>
             <form onsubmit="realizarLogin(event)">
                 <div class="form-group">
-                    <label>E-mail</label>
-                    <input type="email" placeholder="seu@email.com" required>
+                    <label for="loginEmail">E-mail</label>
+                    <input type="email" id="loginEmail" placeholder="seu@email.com" required>
                 </div>
                 <div class="form-group">
-                    <label>Senha</label>
-                    <input type="password" placeholder="Sua senha secreta" required>
+                    <label for="loginSenha">Senha</label>
+                    <input type="password" id="loginSenha" placeholder="Sua senha secreta" required>
                 </div>
-                <button type="submit" class="btn-primary" style="width: 100%; text-align: center; margin-top: 5px;">Entrar</button>
+                <button type="submit" class="btn-primary btn-submit">Entrar</button>
             </form>
         </div>
     </div>
